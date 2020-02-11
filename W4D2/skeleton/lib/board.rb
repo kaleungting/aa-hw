@@ -33,45 +33,47 @@ class Board
     i = start_pos
     selected_cup = @cups[start_pos]
     until selected_cup.empty?
-      el = selected_cup.shift
-      i += 1
-      if i == 13 && (7..12).include?(start_pos) && current_player_name == @name2
-        @cups[i] << el
-      elsif i == 13 
-        i = 0
-        @cups[i] << el
-      end
-      if i == 6 && (0..5).include?(start_pos) && current_player_name == @name1
-        @cups[i] << el
-      elsif i == 6
-        i+=1
-        @cups[i] << el 
-      end
-      if i != 6 && i != 13
-        @cups[i] << el
+      i += 1 
+      i = 0 if i > 13
+      if i == 6
+        @cups[i] << selected_cup.shift if current_player_name == @name1
+      elsif i == 13
+        @cups[i] << selected_cup.shift if current_player_name == @name2
+      else
+        @cups[i] << selected_cup.shift
       end
     end
+    #   el = selected_cup.shift
+    #   i += 1
+    #   if i == 13 && (7..12).include?(start_pos) && current_player_name == @name2
+    #     @cups[i] << el
+    #   elsif i == 13 
+    #     i = 0
+    #     @cups[i] << el
+    #   end
+    #   if i == 6 && (0..5).include?(start_pos) && current_player_name == @name1
+    #     @cups[i] << el
+    #   elsif i == 6
+    #     i+=1
+    #     @cups[i] << el 
+    #   end
+    #   if i != 6 && i != 13
+    #     @cups[i] << el
+    #   end
+    # end
     self.render
-    next_turn(i,current_player_name)
+    next_turn(i)
   end
 
-  def next_turn(ending_cup_idx,current_player_name)
-    debugger
-    if @cups[ending_cup_idx].length == 1
+  def next_turn(ending_cup_idx)
+    if ending_cup_idx == 6 || ending_cup_idx == 13
+      :prompt
+    elsif @cups[ending_cup_idx].count == 1
       :switch
-    elsif @cups[ending_cup_idx].length != 1 && (0..5).include?(ending_cup_idx)
-      :prompt
-    elsif ending_cup_idx == 6 && current_player_name == @name1
-      :prompt
-    elsif ending_cup_idx == 13 && current_player_name == @name2
-      :prompt
-    elsif @cups[ending_cup_idx].length != 1 && (7..12).include?(ending_cup_idx)
-      :prompt 
+    else
+      ending_cup_idx
     end
   end
-
-
-    # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
 
 
   def render
