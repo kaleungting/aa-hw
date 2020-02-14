@@ -76,3 +76,20 @@ def slow_dance(move,tiles_array)
 end
 
 p slow_dance("up",tiles_array)
+
+tiles_hash = {
+    "up" => 0,
+    "right-up" => 1,
+    "right" => 2,
+    "right-down" => 3,
+    "down" => 4,
+    "left-down" => 5,
+    "left" => 6,
+    "left-up" => 7,
+}
+
+def constant_dance(direction,tiles_hash)
+    tiles_hash[direction]
+end    
+
+p constant_dance("up",tiles_hash)
