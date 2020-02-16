@@ -4,17 +4,11 @@ fishies = ['fish', 'fiiish', "fiiiissshhhhhh",'fiiiiish' ,'fiiiish', 'fffish', '
 
 def sluggish_octopus(fishies)
     # debugger
-    max = fishies[0]
-    (0...fishies.length).each do |idx1|
-        (idx1...fishies.length).each do |idx2|
-            if idx2 > idx1
-                if fishies[idx1].length > fishies[idx2].length
-                    max = fishies[idx1] if max.length < fishies[idx1].length && fishies[idx2].length
-                end
-            end
-        end
-    end
-    max
+    max = false
+
+    fishies.each do |fish1|
+        max = true
+    
 end
 
 p sluggish_octopus(fishies)
