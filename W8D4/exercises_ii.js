@@ -26,6 +26,9 @@ function Elephant(name, height, tricks) {
   this.name = name;
   this.height = height;
   this.tricks = tricks;
+  this.meow() = function(){
+    console.log('this elephant meows!');
+  };
 }
 
 Elephant.prototype.trumpet = function() {
