@@ -26,7 +26,7 @@ function Elephant(name, height, tricks) {
   this.name = name;
   this.height = height;
   this.tricks = tricks;
-  this.meow() = function(){
+  this.meow = function(){
     console.log('this elephant meows!');
   };
 }
@@ -48,6 +48,14 @@ Elephant.prototype.play = function() {
   trick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
   console.log(`${this.name} is ${trick}`);
 };
+
+function Animal(name, height, tricks) {
+  this.name = name;
+  this.height = height;
+  this.tricks = tricks;
+}
+
+Animal.prototype.fart = {}
 
 let june = new Elephant("June", 20, [
   "playing basketball",
